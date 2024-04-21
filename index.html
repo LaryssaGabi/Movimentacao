@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Move</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8" />
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* Impede a barra de rolagem */
+        }
+    </style>
+</head>
+
+<body onKeyDown="keyPress(event)">
+    <div id='caixa' style="position: absolute; display: block; width: 100px; height: 100px; background-color: blue">
+    </div>
+
+    <script language="javascript">
+        let caixa = document.getElementById('caixa');
+
+        let top_position = 0;
+        let left_position = 0;
+        let windowHeight = window.innerHeight;
+        let windowWidth = window.innerWidth;
+        let boxWidth = 100; // Largura da caixa
+        let boxHeight = 100; // Altura da caixa
+
+        function keyPress(event) {
+            const key = event.key.toLowerCase();
+            if (key == 'arrowup' || key == 'w') up();
+            if (key == 'arrowdown' || key == 's') down();
+            if (key == 'arrowright' || key == 'd') right();
+            if (key == 'arrowleft' || key == 'a') left();
+        }
+
+        function down() {
+            if (top_position + 10 + boxHeight < windowHeight) {
+                top_position += 10;
+                caixa.style.marginTop = `${top_position}px`;
+            }
+        }
+
+        function up() {
+            if (top_position - 10 >= 0) {
+                top_position -= 10;
+                caixa.style.marginTop = `${top_position}px`;
+            }
+        }
+
+        function right() {
+            if (left_position + 10 + boxWidth < windowWidth) {
+                left_position += 10;
+                caixa.style.marginLeft = `${left_position}px`;
+            }
+        }
+
+        function left() {
+            if (left_position - 10 >= 0) {
+                left_position -= 10;
+                caixa.style.marginLeft = `${left_position}px`;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
